@@ -9,19 +9,27 @@ Simple MT-Proto proxy
 
 ---
 
+You can specify two arguments when building an image.
+1. --build-arg Workers= (Default is 1)
+
+1 is the number of workers. You can increase the number of workers, if you have a powerful server.
+2. --build-arg Secret=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
+To generate a random secret, run the following command:
+```shell
+head -c 16 /dev/urandom | xxd -ps
+```
+
 ```shell
 git clone https://github.com/Dofamin/MTProxy-Docker.git /srv/MTProxy/
 
-docker build /srv/MTProxy/ --tag mtproxy
+docker build /srv/MTProxy/ --tag mtproxy 
 
 docker create \
   --name=MTProxy \
-  -p 444:443/tcp \
-  -p 444:443/udp \
+  -p 443:443/tcp \
+  -p 443:443/udp \
   --privileged \
   --restart unless-stopped \
-  --build-arg Secret=
-  --build-arg Workers=1
   mtproxy:latest
 
 docker start MTProxy
