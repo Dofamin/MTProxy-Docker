@@ -10,9 +10,8 @@ Simple MT-Proto proxy
 ---
 
 You can specify two arguments when building an image.
-1. --build-arg Workers= (Default is 1)
+1. --build-arg Workers= (1 is the number of workers. You can increase the number of workers, if you have a powerful server.)
 
-1 is the number of workers. You can increase the number of workers, if you have a powerful server.
 2. --build-arg Secret=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
 To generate a random secret, run the following command:
 ```shell
