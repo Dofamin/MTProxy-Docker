@@ -5,7 +5,7 @@
 Simple MT-Proto proxy
 
 
-#### Random padding
+### Random padding
 
 ---
 
@@ -16,7 +16,7 @@ It's only enabled for clients which request it.
 Add dd prefix to secret (cafe...babe => ddcafe...babe) to enable this mode on client side.
 
 
-#### Troubleshooting
+### Troubleshooting
 
 ---
 
