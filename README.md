@@ -61,3 +61,8 @@ If clients hang in an "updating" state, be sure to check the following:
 2.Your proxy server's system time should be within five seconds of UTC. You should be running a time synchronization daemon to keep these issues to a minimum.
 
 3.The MTProto Proxy must know about its globally routable external IP address if it's behind NAT. The container tries to detect the external IP address automatically, but this may fail if you have extracted the binary out of the container. Use mtproto-proxy --nat-info command line switch to configure the proxy server.
+
+---
+
+# [Official MTProxy GitHub Repository](https://github.com/TelegramMessenger/MTProxy)
+
