@@ -5,6 +5,27 @@
 Simple MT-Proto proxy
 
 
+### Building
+
+---
+
+```shell
+git clone https://github.com/Dofamin/MTProxy-Docker.git /srv/MTProxy/
+
+docker build /srv/MTProxy/ --tag mtproxy
+
+docker create \
+  --name=MTProxy \
+  -p 444:443/tcp \
+  -p 444:443/udp \
+  --privileged \
+  --restart unless-stopped \
+  mtproxy:latest
+
+docker start MTProxy
+
+```
+
 ### Random padding
 
 ---
