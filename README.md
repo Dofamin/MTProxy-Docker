@@ -20,6 +20,8 @@ docker create \
   -p 444:443/udp \
   --privileged \
   --restart unless-stopped \
+  --build-arg Secret=
+  --build-arg Workers=1
   mtproxy:latest
 
 docker start MTProxy
