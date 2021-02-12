@@ -27,6 +27,7 @@ docker create \
   --name=MTProxy \
   -p 443:443/tcp \
   -p 443:443/udp \
+  -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
   --privileged \
   --restart unless-stopped \
   mtproxy:latest
