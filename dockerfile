@@ -27,6 +27,7 @@ RUN yum -y update > /dev/null 2>&1;\
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxySecret -o /MTProxy/objs/bin/proxy-secret && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
 # Obtain current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /MTProxy/objs/bin/proxy-multi.conf && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
+    (crontab -l 2>/dev/null; echo '@daily wget --output-document="/MTProxy/Stats/$(date +%d.%m.%y).log" localhost:8888/stats  >> /var/log/cron.log 2>&1') | crontab - ;\
     curl -s https://core.telegram.org/getProxyConfig -o /MTProxy/objs/bin/proxy-multi.conf > /dev/null 2>&1 ;\
 # Systemd service
     sed -i "8 i ExecStart=/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 443 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $IP_INT:$IP_EXT --http-stats" /etc/systemd/system/MTProxy.service ;\
