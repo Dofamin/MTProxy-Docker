@@ -13,7 +13,7 @@ ADD container-image-root/MTProxy.service /etc/systemd/system/
 # Update system packages:
 RUN yum -y update > /dev/null 2>&1;\
 # Install dependencies, you would need common set of tools for building from source, and development packages for openssl and zlib.
-    yum -y install openssl-devel zlib-devel curl cronie wget hostname > /dev/null 2>&1;\
+    yum -y install openssl-devel zlib-devel curl cronie wget hostname logrotate > /dev/null 2>&1;\
     yum -y groupinstall "Development Tools" > /dev/null 2>&1 ;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
