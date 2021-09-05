@@ -30,6 +30,7 @@ docker create \
   -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
   --privileged \
   --restart unless-stopped \
+  --memory="100m" \
   mtproxy:latest
 
 docker start MTProxy
