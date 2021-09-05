@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/MTProxy/objs/bin
-ExecStart=/bin/sh -c "/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 443 -S ec4dd80983dbf12d6b354cf7bcfe9a48 --aes-pwd proxy-secret proxy-multi.conf -M 1 --nat-info $(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co) --http-stats"
+ExecStart=/bin/sh -c "/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 443 -S ec4dd80983dbf12d6b354cf7bcfe9a48 --aes-pwd proxy-secret proxy-multi.conf -M 1 --nat-info $(getent hosts $(cat /etc/hostname) 
 Restart=on-failure
 
 [Install]
