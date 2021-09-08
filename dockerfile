@@ -50,4 +50,4 @@ RUN yum -y update > /dev/null 2>&1;\
 # Expose Ports:
 EXPOSE 443/tcp 443/udp
 # CMD
-CMD ["/MTProxy/objs/bin/mtproto-proxy", "-u", "nobody", "-p", "8888", "-H", "443", "-S", $Secret, "--aes-pwd", "proxy-secret proxy-multi.conf", "-M", $Workers, "--nat-info",  "$(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co)", "--http-stats"]
+CMD ["/MTProxy/objs/bin/mtproto-proxy", "-u", "nobody", "-p", "8888", "-H", "443", "-S", $Secret, "--aes-pwd", "proxy-secret", proxy-multi.conf", "-M", $Workers, "--nat-info",  "$(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co)", "--http-stats"]
