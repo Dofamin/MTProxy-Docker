@@ -9,7 +9,6 @@ ARG Secret
 ENV Secret=${Secret:-ec4dd80983dbf12d6b354cf7bcfe9a48}
 ARG Workers
 ENV Workers=${Workers:-1}
-ADD container-image-root/MTProxy.service /etc/systemd/system/
 # Update system packages:
 RUN yum -y update > /dev/null 2>&1;\
 # Install dependencies, you would need common set of tools for building from source, and development packages for openssl and zlib.
@@ -51,4 +50,4 @@ RUN yum -y update > /dev/null 2>&1;\
 # Expose Ports:
 EXPOSE 443/tcp 443/udp
 # CMD
-CMD ["/usr/sbin/init"]
+CMD ["/MTProxy/objs/bin/mtproto-proxy", "-u", "nobody", "-p", "8888", "-H", "443", "-S", $Secret, "--aes-pwd", "proxy-secret proxy-multi.conf", "-M", $Workers, "--nat-info",  "$(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co)", "--http-stats"]
