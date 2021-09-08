@@ -47,7 +47,8 @@ RUN yum -y update > /dev/null 2>&1;\
     All is setup and done! \n\
     For access MTProxy use this link: \n\
     \e[1;33mhttps://t.me/proxy?server=$IP_EXT&port=443&secret=$Secret\e[0m"
+WORKDIR /MTProxy/objs/bin/
 # Expose Ports:
 EXPOSE 443/tcp 443/udp
 # CMD
-CMD ["/bin/bash", "-c", "MTProxy/objs/bin/mtproto-proxy", "-u", "nobody", "-p", "8888", "-H", "443", "-S", $Secret, "--aes-pwd", "proxy-secret", "proxy-multi.conf", "-M", $Workers, "--nat-info",  "$(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co)", "--http-stats"]
+CMD ["mtproto-proxy", "-u", "nobody", "-p", "8888", "-H", "443", "-S", $Secret, "--aes-pwd", "proxy-secret", "proxy-multi.conf", "-M", $Workers, "--nat-info",  "$(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co)", "--http-stats"]
