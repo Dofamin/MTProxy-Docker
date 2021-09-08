@@ -1,6 +1,7 @@
 [Unit]
 Description=MTProxy
 After=network.target
+OnFailure=shutdown now
 
 [Service]
 Type=simple
