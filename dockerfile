@@ -36,7 +36,7 @@ RUN yum -y update > /dev/null 2>&1;\
     yum -y autoremove > /dev/null 2>&1 ;\
     yum -y remove openssl-devel zlib-devel > /dev/null 2>&1;\
     yum clean all > /dev/null 2>&1;\
-    rm -rf /var/cache/yum > /dev/null 2>&1 ;\
+    rm -rf /var/cache/yum > /dev/null 2>&1
 # Expose Ports:
 EXPOSE 443 8888
 # CMD
