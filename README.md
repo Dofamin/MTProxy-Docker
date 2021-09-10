@@ -27,7 +27,7 @@ docker create \
   --name=MTProxy \
   -p 443:8889 \
   -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
-  -e Workers=1
+  -e Workers=1 \
   -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
   --privileged \
   --restart unless-stopped \
