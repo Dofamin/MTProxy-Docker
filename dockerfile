@@ -40,4 +40,4 @@ RUN yum -y update > /dev/null 2>&1;\
 # Expose Ports:
 EXPOSE 8889 8888
 # CMD
-CMD ["sh", "-c", "/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl ifconfig.co) --http-stats"]
+CMD ["sh", "-c", "/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(getent hosts $(cat /etc/hostname) | awk '{print $1; exit}'):$(curl https://ipinfo.io/ip) --http-stats"]
