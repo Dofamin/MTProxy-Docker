@@ -1,3 +1,4 @@
+[![Docker Image CI](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-image.yml)
 # MTProxy-Docker
 
 ---
