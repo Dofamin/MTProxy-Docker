@@ -30,8 +30,9 @@ RUN apt -y update > /dev/null 2>&1;\
     curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf > /dev/null 2>&1 ;\
 # Obtain current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxySecret -o /srv/MTProxy/objs/bin/proxy-secret >> /var/log/cron.log 2>&1") | crontab - ;\
-    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf && pkill -f mtproto-proxy >> /var/log/cron.log 2>&1") | crontab - ;\
+    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf >> /var/log/cron.log 2>&1") | crontab - ;\
     (crontab -l 2>/dev/null; echo '@daily wget --output-document="/MTProxy/Stats/$(date +%d.%m.%y).log" localhost:8888/stats  >> /var/log/cron.log 2>&1') | crontab - ;\
+    (crontab -l 2>/dev/null; echo '0 4 * * *  pkill -f mtproto-proxy  >> /var/log/cron.log 2>&1') | crontab - ;\
 # Cleanup
     apt-get clean > /dev/null 2>&1;\
     # Info message for the build
