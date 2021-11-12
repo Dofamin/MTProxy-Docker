@@ -3,7 +3,7 @@
 
 ---
 
-Simple MT-Proto proxy
+Simple MT-Proto proxy **ONLY FOR x86_64 SYSTEMS**
 
 
 ### Building
