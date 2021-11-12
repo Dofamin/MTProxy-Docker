@@ -52,4 +52,4 @@ WORKDIR /srv/MTProxy/objs/bin/
 # Expose Ports:
 EXPOSE 443/tcp 443/udp
 # CMD
-CMD ["/bin/bash" , "-c" , "/srv/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 443 -S $Secret --aes-pwd /srv/MTProxy/objs/bin/proxy-secret /srv/MTProxy/objs/bin/proxy-multi.conf -M $Workers --nat-info $IP_INT:$IP_EXT --http-stats"]
+CMD ["/bin/bash" , "-c" , "./mtproto-proxy -u nobody -p 8888 -H 443 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
