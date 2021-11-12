@@ -10,6 +10,7 @@ docker create \
   -p 443:443/tcp \
   -p 443:443/udp \
   -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
+  -v /srv/MTProxy/container-image-root/logrotate/:/etc/logrotate.d/\
   --privileged \
   --restart unless-stopped \
   mtproxy:latest
