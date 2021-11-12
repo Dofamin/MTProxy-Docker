@@ -23,14 +23,14 @@ RUN apt -y update > /dev/null 2>&1;\
     IP_INT=$(hostname --ip-address) ;\
     git clone https://github.com/TelegramMessenger/MTProxy /srv/MTProxy > /dev/null 2>&1 ;\
 # To build, simply run make, the binary will be in objs/bin/mtproto-proxy:
-    cd /MTProxy ; \
+    cd /srv/MTProxy ; \
     make > /dev/null 2>&1;\    
 # Obtain a secret, used to connect to telegram servers.
-    curl -s https://core.telegram.org/getProxySecret -o /MTProxy/objs/bin/proxy-secret > /dev/null 2>&1 ;\
-    curl -s https://core.telegram.org/getProxyConfig -o /MTProxy/objs/bin/proxy-multi.conf > /dev/null 2>&1 ;\
+    curl -s https://core.telegram.org/getProxySecret -o /srv/MTProxy/objs/bin/proxy-secret > /dev/null 2>&1 ;\
+    curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf > /dev/null 2>&1 ;\
 # Obtain current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
-    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxySecret -o /MTProxy/objs/bin/proxy-secret && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
-    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /MTProxy/objs/bin/proxy-multi.conf && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
+    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxySecret -o /srv/MTProxy/objs/bin/proxy-secret && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
+    (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf && systemctl restart MTProxy.service >> /var/log/cron.log 2>&1") | crontab - ;\
     (crontab -l 2>/dev/null; echo '@daily wget --output-document="/MTProxy/Stats/$(date +%d.%m.%y).log" localhost:8888/stats  >> /var/log/cron.log 2>&1') | crontab - ;\
 # Cleanup
     apt-get clean > /dev/null 2>&1;\
