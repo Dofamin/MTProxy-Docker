@@ -50,6 +50,6 @@ WORKDIR /srv/MTProxy/objs/bin/
 # HEALTHCHECK
 #HEALTHCHECK --interval=60s --timeout=30s --start-period=300s CMD node extra/healthcheck.js
 # Expose Ports:
-EXPOSE 443/tcp 443/udp
+EXPOSE 8889/tcp 8889/udp
 # CMD
-CMD ["/bin/bash" , "-c" , "./mtproto-proxy -u nobody -p 8888 -H 443 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
+CMD ["/bin/bash" , "-c" , "./mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
