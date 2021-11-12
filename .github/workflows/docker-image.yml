@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ transfer-to-ubuntu ]
   pull_request:
     branches: [ main ]
 
