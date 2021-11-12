@@ -17,7 +17,7 @@ RUN apt -y update > /dev/null 2>&1;\
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone > /dev/null 2>&1;\
     dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1;\
 # Install dependencies, you would need common set of tools.
-    apt -y install git curl build-essential libssl-dev zlib1g-dev cron > /dev/null 2>&1;\
+    apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget > /dev/null 2>&1;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
     IP_INT=$(hostname --ip-address) ;\
