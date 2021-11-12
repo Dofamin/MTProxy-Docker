@@ -45,6 +45,8 @@ docker start MTProxy
 Or just pull from GitHub
 
 ```shell
+git clone https://github.com/Dofamin/MTProxy-Docker.git /srv/MTProxy/
+
 docker pull ghcr.io/dofamin/mtproxy-docker:main
 
 docker rm --force MTProxy
