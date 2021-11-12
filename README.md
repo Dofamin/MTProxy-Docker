@@ -24,6 +24,8 @@ git clone https://github.com/Dofamin/MTProxy-Docker.git /srv/MTProxy/
 
 docker build /srv/MTProxy/ --tag mtproxy 
 
+docker rm --force MTProxy
+
 docker create \
   --name=MTProxy \
   -p 443:8889 \
