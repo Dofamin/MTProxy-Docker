@@ -32,6 +32,7 @@ docker create \
   -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
   -e Workers=1 \
   -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
+  -v /srv/MTProxy/container-image-root/logrotate/:/etc/logrotate.d/\
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
@@ -40,6 +41,30 @@ docker create \
 docker start MTProxy
 
 ```
+
+Or just pull from GitHub
+
+```shell
+docker pull ghcr.io/dofamin/mtproxy-docker:main
+
+docker rm --force MTProxy
+
+docker create \
+  --name=MTProxy \
+  -p 443:8889 \
+  -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
+  -e Workers=1 \
+  -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
+  -v /srv/MTProxy/container-image-root/logrotate/:/etc/logrotate.d/\
+  --privileged \
+  --restart unless-stopped \
+  --memory="100m" \
+  ghcr.io/dofamin/mtproxy-docker:main
+
+docker start MTProxy
+
+```
+
 
 ### Random padding
 
