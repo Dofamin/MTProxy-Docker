@@ -16,8 +16,10 @@ RUN apt -y update > /dev/null 2>&1;\
 # Fix for select tzdata region
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone > /dev/null 2>&1;\
     dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1;\
+# Enable time synchronization
+    apt -y install ntp || service ntp start > /dev/null 2>&1 ;
 # Install dependencies, you would need common set of tools.
-    apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget logrotate ntp > /dev/null 2>&1;\
+RUN apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget logrotate > /dev/null 2>&1;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
     IP_INT=$(hostname --ip-address) ;\
@@ -33,8 +35,6 @@ RUN apt -y update > /dev/null 2>&1;\
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf >> /var/log/cron.log 2>&1") | crontab - ;\
     (crontab -l 2>/dev/null; echo '@daily wget --output-document="/MTProxy/Stats/$(date +%d.%m.%y).log" localhost:8888/stats  >> /var/log/cron.log 2>&1') | crontab - ;\
     (crontab -l 2>/dev/null; echo '0 4 * * *  pkill -f mtproto-proxy  >> /var/log/cron.log 2>&1') | crontab - ;\ 
-# Enable time synchronization
-    service ntp start > /dev/null 2>&1 ;\
 # Cleanup
     apt-get clean > /dev/null 2>&1;\
     # Info message for the build
