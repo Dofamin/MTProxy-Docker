@@ -16,10 +16,8 @@ RUN apt -y update > /dev/null 2>&1;\
 # Fix for select tzdata region
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone > /dev/null 2>&1;\
     dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1;\
-# Enable time synchronization
-    apt -y install ntp || service ntp start > /dev/null 2>&1 ;
 # Install dependencies, you would need common set of tools.
-RUN apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget logrotate > /dev/null 2>&1;\
+    apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget logrotate ntp > /dev/null 2>&1;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
     IP_INT=$(hostname --ip-address) ;\
@@ -55,4 +53,4 @@ WORKDIR /srv/MTProxy/objs/bin/
 # Expose Ports:
 EXPOSE 8889/tcp 8889/udp
 # CMD
-CMD ["/bin/bash" , "-c" , "cron && ./mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
+CMD ["/bin/bash" , "-c" , "service ntp start && cron && ./mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
