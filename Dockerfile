@@ -49,7 +49,7 @@ RUN apt -y update > /dev/null 2>&1;\
 # Change WORKDIR    
 WORKDIR /srv/MTProxy/objs/bin/
 # HEALTHCHECK
-HEALTHCHECK --interval=60s --timeout=30s --start-period=300s CMD curl -f http://localhost:8888/stats || exit 1
+HEALTHCHECK --interval=60s --timeout=30s --start-period=10s CMD curl -f http://localhost:8888/stats || exit 1
 # Expose Ports:
 EXPOSE 8889/tcp 8889/udp
 # CMD
