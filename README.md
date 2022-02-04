@@ -31,8 +31,6 @@ docker create \
   -p 443:8889 \
   -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
   -e Workers=1 \
-  -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
-  -v /srv/MTProxy/container-image-root/logrotate/:/etc/logrotate.d/\
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
@@ -55,8 +53,6 @@ docker create \
   -p 443:8889 \
   -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
   -e Workers=1 \
-  -v /srv/MTProxy/container-image-root/Stats/:/MTProxy/Stats/\
-  -v /srv/MTProxy/container-image-root/logrotate/:/etc/logrotate.d/\
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
