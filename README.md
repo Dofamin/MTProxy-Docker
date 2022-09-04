@@ -1,4 +1,4 @@
-[![Docker](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-publish.yml)
+[![Docker](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-image-build-publish.yml/badge.svg)](https://github.com/Dofamin/MTProxy-Docker/actions/workflows/docker-image-build-publish.yml)
 # MTProxy-Docker
 
 ---
