@@ -18,6 +18,8 @@ RUN apt -y update > /dev/null 2>&1;\
     dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1;\
 # Install dependencies, you would need common set of tools.
     apt -y install git curl build-essential libssl-dev zlib1g-dev cron wget logrotate ntp > /dev/null 2>&1;\
+    apt install -y gcc-9 g++-9 cpp-9 > /dev/null 2>&1;\
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9 > /dev/null 2>&1;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
     IP_INT=$(hostname --ip-address) ;\
