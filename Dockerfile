@@ -4,6 +4,7 @@ FROM ubuntu:latest
 LABEL maintainer="github.com/Dofamin"
 LABEL image="MTProxy"
 LABEL OS="Ubuntu/latest"
+COPY container-image-root/ /
 # ARG & ENV
 ARG Secret
 ENV Secret=${Secret:-ec4dd80983dbf12d6b354cf7bcfe9a48}
@@ -26,7 +27,7 @@ RUN apt -y update > /dev/null 2>&1;\
     git clone https://github.com/TelegramMessenger/MTProxy /srv/MTProxy > /dev/null 2>&1 ;\
 # To build, simply run make, the binary will be in objs/bin/mtproto-proxy:
     cd /srv/MTProxy ; \
-    make > /dev/null 2>&1;\    
+    make > /dev/null 2>&1;\
 # Obtain a secret, used to connect to telegram servers.
     curl -s https://core.telegram.org/getProxySecret -o /srv/MTProxy/objs/bin/proxy-secret > /dev/null 2>&1 ;\
     curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf > /dev/null 2>&1 ;\
@@ -34,7 +35,7 @@ RUN apt -y update > /dev/null 2>&1;\
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxySecret -o /srv/MTProxy/objs/bin/proxy-secret >> /var/log/cron.log 2>&1") | crontab - ;\
     (crontab -l 2>/dev/null; echo "@daily curl -s https://core.telegram.org/getProxyConfig -o /srv/MTProxy/objs/bin/proxy-multi.conf >> /var/log/cron.log 2>&1") | crontab - ;\
     (crontab -l 2>/dev/null; echo '@daily wget --output-document="/MTProxy/Stats/$(date +%d.%m.%y).log" localhost:8888/stats  >> /var/log/cron.log 2>&1') | crontab - ;\
-    (crontab -l 2>/dev/null; echo '0 4 * * *  pkill -f mtproto-proxy  >> /var/log/cron.log 2>&1') | crontab - ;\ 
+    (crontab -l 2>/dev/null; echo '0 4 * * *  pkill -f mtproto-proxy  >> /var/log/cron.log 2>&1') | crontab - ;\
 # Cleanup
     apt-get clean > /dev/null 2>&1;\
     # Info message for the build
@@ -48,11 +49,11 @@ RUN apt -y update > /dev/null 2>&1;\
     All is setup and done! \n\
     For access MTProxy use this link: \n\
     \e[1;33mhttps://t.me/proxy?server=$IP_EXT&port=443&secret=$Secret\e[0m"
-# Change WORKDIR    
+# Change WORKDIR
 WORKDIR /srv/MTProxy/objs/bin/
 # HEALTHCHECK
 HEALTHCHECK --interval=60s --timeout=30s --start-period=10s CMD curl -f http://localhost:8888/stats || exit 1
 # Expose Ports:
 EXPOSE 8889/tcp 8889/udp
-# CMD
-CMD ["/bin/bash" , "-c" , "service ntp start && cron && ./mtproto-proxy -u nobody -p 8888 -H 8889 -S $Secret --aes-pwd proxy-secret proxy-multi.conf -M $Workers --nat-info $(hostname --ip-address):$(curl ifconfig.co/ip -s) --http-stats"]
+# ENTRYPOINT
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
