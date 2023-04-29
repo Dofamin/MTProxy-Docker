@@ -5,6 +5,12 @@
 
 Simple MT-Proto proxy **ONLY FOR x86_64 SYSTEMS**
 
+## Requirements
+
+* VPS outside a country that blocked Telegram
+* Minimum knowledge about docker and/or docker compose
+* Read this entire README, the link at the end and understand what this project does
+
 ### With docker compose
 
 #### Default settings
