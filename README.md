@@ -5,8 +5,26 @@
 
 Simple MT-Proto proxy **ONLY FOR x86_64 SYSTEMS**
 
+### With docker compose
 
-### Building
+#### Default settings
+
+* Run `docker compose up -d`
+
+#### Custom settings
+
+If you want to customize an environment, create a `.env` file replacing the follow default values:
+
+| Environment      | Default value                           |
+| ---------------- | --------------------------------------- |
+| SECRET           | `ec4dd80983dbf12d6b354cf7bcfe9a48`      |
+| WORKERS          | 1                                       |
+| MTPROTO_REPO_URL | https://github.com/GetPageSpeed/MTProxy |
+| TZ               |                                         |
+
+To more informations read the follow session.
+
+### Building without docker compose
 
 ---
 
