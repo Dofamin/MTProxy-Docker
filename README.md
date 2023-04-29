@@ -117,4 +117,4 @@ If clients hang in an "updating" state, be sure to check the following:
 ---
 
 ##### [Official MTProxy GitHub Repository](https://github.com/TelegramMessenger/MTProxy)
-
+##### [Forked project from MTProxy with patches](https://github.com/GetPageSpeed/MTProxy)
