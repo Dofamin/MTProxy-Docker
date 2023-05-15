@@ -11,7 +11,7 @@ ENV SECRET=${SECRET:-ec4dd80983dbf12d6b354cf7bcfe9a48}
 ARG WORKERS
 ENV WORKERS=${WORKERS:-1}
 ARG MTPROTO_REPO_URL
-ENV MTPROTO_REPO_URL=${MTPROTO_REPO_URL:-https://github.com/GetPageSpeed/MTProxy}
+ENV MTPROTO_REPO_URL=${MTPROTO_REPO_URL:-https://github.com/TelegramMessenger/MTProxy}
 WORKDIR /srv/
 ENV TZ=Europe/Moscow
 # Update system packages:

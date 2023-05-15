@@ -21,12 +21,14 @@ Simple MT-Proto proxy **ONLY FOR x86_64 SYSTEMS**
 
 If you want to customize an environment, create a `.env` file replacing the follow default values:
 
-| Environment      | Default value                           |
-| ---------------- | --------------------------------------- |
-| SECRET           | `ec4dd80983dbf12d6b354cf7bcfe9a48`      |
-| WORKERS          | 1                                       |
-| MTPROTO_REPO_URL | https://github.com/GetPageSpeed/MTProxy |
-| TZ               |                                         |
+| Environment      | Default value                                |
+| ---------------- | -------------------------------------------- |
+| SECRET           | `ec4dd80983dbf12d6b354cf7bcfe9a48`           |
+| WORKERS          | 1                                            |
+| MTPROTO_REPO_URL | https://github.com/TelegramMessenger/MTProxy |
+| TZ               |                                              |
+
+An alternative to `MTPROTO_REPO_URL` is https://github.com/GetPageSpeed/MTProxy that is a fork from MTProxy with patches applied.
 
 To more informations read the follow session.
 
@@ -117,4 +119,3 @@ If clients hang in an "updating" state, be sure to check the following:
 ---
 
 ##### [Official MTProxy GitHub Repository](https://github.com/TelegramMessenger/MTProxy)
-##### [Forked project from MTProxy with patches](https://github.com/GetPageSpeed/MTProxy)
