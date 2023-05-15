@@ -13,8 +13,6 @@ services:
       - 8443:8889/udp
       - 8443:8889/tcp
     environment:
-      - TAG
       - SECRET
-      - SECRET_COUNT
       - WORKERS
       - MTPROTO_REPO_URL
