@@ -37,9 +37,9 @@ To more informations read the follow session.
 ---
 
 You can specify two arguments when building an image.
-1. --build-arg Workers= (1 is the number of workers. You can increase the number of workers, if you have a powerful server.)
+1. --build-arg WORKERS= (1 is the number of workers. You can increase the number of workers, if you have a powerful server.)
 
-2. --build-arg Secret=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
+2. --build-arg SECRET=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
 To generate a random secret, run the following command:
 ```shell
 head -c 16 /dev/urandom | xxd -ps
@@ -55,8 +55,8 @@ docker rm --force MTProxy
 docker create \
   --name=MTProxy \
   -p 443:8889 \
-  -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
-  -e Workers=1 \
+  -e SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48 \
+  -e WORKERS=1 \
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
@@ -77,8 +77,8 @@ docker rm --force MTProxy
 docker create \
   --name=MTProxy \
   -p 443:8889 \
-  -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
-  -e Workers=1 \
+  -e SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48 \
+  -e WORKERS=1 \
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
