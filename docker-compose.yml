@@ -1,0 +1,18 @@
+services:
+  mtproto-proxy:
+    #image: telegrammessenger/proxy:latest
+    build:
+      context: .
+      args:
+        MTPROTO_REPO_URL: ${MTPROXY_REPO_URL}
+    container_name: mtproto-proxy
+    volumes:
+      - ./volumes/config:/data
+    restart: unless-stopped
+    ports:
+      - 8443:8889/udp
+      - 8443:8889/tcp
+    environment:
+      - SECRET
+      - WORKERS
+      - MTPROTO_REPO_URL

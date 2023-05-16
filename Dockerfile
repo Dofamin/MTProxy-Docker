@@ -6,10 +6,12 @@ LABEL image="MTProxy"
 LABEL OS="Ubuntu/latest"
 COPY container-image-root/ /
 # ARG & ENV
-ARG Secret
-ENV Secret=${Secret:-ec4dd80983dbf12d6b354cf7bcfe9a48}
-ARG Workers
-ENV Workers=${Workers:-1}
+ARG SECRET
+ENV SECRET=${SECRET:-ec4dd80983dbf12d6b354cf7bcfe9a48}
+ARG WORKERS
+ENV WORKERS=${WORKERS:-1}
+ARG MTPROTO_REPO_URL
+ENV MTPROTO_REPO_URL=${MTPROTO_REPO_URL:-https://github.com/TelegramMessenger/MTProxy}
 WORKDIR /srv/
 ENV TZ=Europe/Moscow
 # Update system packages:
@@ -24,7 +26,7 @@ RUN apt -y update > /dev/null 2>&1;\
 # Clone the repo:
     IP_EXT=$(curl ifconfig.co/ip -s) ;\
     IP_INT=$(hostname --ip-address) ;\
-    git clone https://github.com/TelegramMessenger/MTProxy /srv/MTProxy > /dev/null 2>&1 ;\
+    git clone ${MTPROTO_REPO_URL} /srv/MTProxy > /dev/null 2>&1 ;\
 # To build, simply run make, the binary will be in objs/bin/mtproto-proxy:
     cd /srv/MTProxy ; \
     make > /dev/null 2>&1;\

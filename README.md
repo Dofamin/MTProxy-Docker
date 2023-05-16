@@ -5,15 +5,41 @@
 
 Simple MT-Proto proxy **ONLY FOR x86_64 SYSTEMS**
 
+## Requirements
 
-### Building
+* VPS outside a country that blocked Telegram
+* Minimum knowledge about docker and/or docker compose
+* Read this entire README, the link at the end and understand what this project does
+
+### With docker compose
+
+#### Default settings
+
+* Run `docker compose up -d`
+
+#### Custom settings
+
+If you want to customize an environment, create a `.env` file replacing the follow default values:
+
+| Environment      | Default value                                |
+| ---------------- | -------------------------------------------- |
+| SECRET           | `ec4dd80983dbf12d6b354cf7bcfe9a48`           |
+| WORKERS          | 1                                            |
+| MTPROTO_REPO_URL | https://github.com/TelegramMessenger/MTProxy |
+| TZ               |                                              |
+
+An alternative to `MTPROTO_REPO_URL` is https://github.com/GetPageSpeed/MTProxy that is a fork from MTProxy with patches applied.
+
+To more informations read the follow session.
+
+### Building without docker compose
 
 ---
 
 You can specify two arguments when building an image.
-1. --build-arg Workers= (1 is the number of workers. You can increase the number of workers, if you have a powerful server.)
+1. --build-arg WORKERS= (1 is the number of workers. You can increase the number of workers, if you have a powerful server.)
 
-2. --build-arg Secret=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
+2. --build-arg SECRET=  (Default is ec4dd80983dbf12d6b354cf7bcfe9a48)
 To generate a random secret, run the following command:
 ```shell
 head -c 16 /dev/urandom | xxd -ps
@@ -29,8 +55,8 @@ docker rm --force MTProxy
 docker create \
   --name=MTProxy \
   -p 443:8889 \
-  -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
-  -e Workers=1 \
+  -e SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48 \
+  -e WORKERS=1 \
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
@@ -51,8 +77,8 @@ docker rm --force MTProxy
 docker create \
   --name=MTProxy \
   -p 443:8889 \
-  -e Secret=ec4dd80983dbf12d6b354cf7bcfe9a48 \
-  -e Workers=1 \
+  -e SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48 \
+  -e WORKERS=1 \
   --privileged \
   --restart unless-stopped \
   --memory="100m" \
@@ -93,4 +119,3 @@ If clients hang in an "updating" state, be sure to check the following:
 ---
 
 ##### [Official MTProxy GitHub Repository](https://github.com/TelegramMessenger/MTProxy)
-
