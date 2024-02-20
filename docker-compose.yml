@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        MTPROTO_REPO_URL: ${MTPROXY_REPO_URL}
+        MTPROTO_REPO_URL: ${MTPROTO_REPO_URL}
     container_name: mtproto-proxy
     volumes:
       - ./volumes/config:/data
