@@ -27,8 +27,11 @@ If you want to customize an environment, create a `.env` file replacing the foll
 | WORKERS          | 1                                            |
 | MTPROTO_REPO_URL | https://github.com/TelegramMessenger/MTProxy |
 | TZ               |                                              |
+| IP               | Public IP address (optional)                 |
 
 An alternative to `MTPROTO_REPO_URL` is https://github.com/GetPageSpeed/MTProxy that is a fork from MTProxy with patches applied.
+
+Public IP address is detected using "curl ifconfig.co". If it fails, you can provide it with the IP variable.
 
 To more informations read the follow session.
 
