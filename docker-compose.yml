@@ -16,3 +16,4 @@ services:
       - SECRET
       - WORKERS
       - MTPROTO_REPO_URL
+      - IP
